@@ -1,12 +1,18 @@
 <div class="container">
     <div class="row">
         <div class="col-4">
-            <form [formGroup]="miFormulario" >
+            <form [formGroup]="miFormulario" (ngSubmit)="enviar()" >
                 <label for="">Nombre</label>
                 <input type="text" class="form-control" formControlName="nombre">
+
+                
+
+
                 <label for="">Telefono</label>
                 <input type="text" class="form-control" formControlName="telefono">
-                <button class="btn btn-primary">Enviar datos</button>
+                <p *ngIf="!miFormulario.valid">Errores en el formulario</p>
+                <p *ngIf="!miFormulario.controls['nombre'].valid" class="text-danger">El nombre debe de tener al menos 4 letras</p>
+                <button  [disabled]="!miFormulario.valid"  class="btn btn-primary">Enviar datos</button>
             </form>
         </div>
     </div>
